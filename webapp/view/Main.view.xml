@@ -6,7 +6,7 @@
  
                 <List items="{products>/Produkte}">
  
-                    <StandardListItem title="{products>Prodname}" info="ID: {products>Prodid}"/>
+                    <StandardListItem title="Produktname: {products>Prodname}" info="ID: {products>Prodid}"/>
  
                 </List>
                 </content>
