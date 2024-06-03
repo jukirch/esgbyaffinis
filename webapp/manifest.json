@@ -69,7 +69,7 @@
           "bundleName": "esgapp.i18n.i18n"
         }
       },
-      "": {
+      "products": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
