@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZYP23_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="Produkt" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prodid"/>
+                </Key>
+                <Property Name="Prodid" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Produkt ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prodname" Type="Edm.String" Nullable="false" MaxLength="36" sap:unicode="false" sap:label="Prod Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Preis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Währung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Produktkategorie" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Mengeneinheit des Produkts" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Available" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Verfügbarkeit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="User" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bname"/>
+                </Key>
+                <Property Name="Sprache" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Sprache" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Benutzer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Liste" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Listid"/>
+                </Key>
+                <Property Name="Listid" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="ListID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Listname" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="ListenName" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Creatorname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Benutzer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Erstelldatum" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toAuth" Relationship="ZYP23_SRV.Listen_Auth" FromRole="FromRole_Listen_Auth" ToRole="ToRole_Listen_Auth"/>
+            </EntityType>
+            <EntityType Name="Listitem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Listid"/>
+                    <PropertyRef Name="Prodid"/>
+                </Key>
+                <Property Name="Listid" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="ListID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prodid" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Produkt ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Addedby" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Benutzer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adddate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changeby" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Benutzer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Amount" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Menge" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Listendetails" Relationship="ZYP23_SRV.Einkaufslisten_Listen" FromRole="FromRole_Einkaufslisten_Listen" ToRole="ToRole_Einkaufslisten_Listen"/>
+                <NavigationProperty Name="Produktdetails" Relationship="ZYP23_SRV.Einkaufslisten_Produkte" FromRole="FromRole_Einkaufslisten_Produkte" ToRole="ToRole_Einkaufslisten_Produkte"/>
+            </EntityType>
+            <EntityType Name="Autheintrag" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Uname"/>
+                    <PropertyRef Name="Listid"/>
+                </Key>
+                <Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Benutzer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Listid" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="ListID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Authlvl" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Auth. Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="Listen_Auth" sap:content-version="1">
+                <End Type="ZYP23_SRV.Liste" Multiplicity="1" Role="FromRole_Listen_Auth"/>
+                <End Type="ZYP23_SRV.Autheintrag" Multiplicity="*" Role="ToRole_Listen_Auth"/>
+            </Association>
+            <Association Name="Einkaufslisten_Produkte" sap:content-version="1" sap:label="Verbindung Listen zu Produkten">
+                <End Type="ZYP23_SRV.Listitem" Multiplicity="*" Role="FromRole_Einkaufslisten_Produkte"/>
+                <End Type="ZYP23_SRV.Produkt" Multiplicity="1" Role="ToRole_Einkaufslisten_Produkte"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Einkaufslisten_Produkte">
+                        <PropertyRef Name="Prodid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Einkaufslisten_Produkte">
+                        <PropertyRef Name="Prodid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Einkaufslisten_Listen" sap:content-version="1" sap:label="Verbindung Einkaufslisten und Listen">
+                <End Type="ZYP23_SRV.Listitem" Multiplicity="*" Role="FromRole_Einkaufslisten_Listen"/>
+                <End Type="ZYP23_SRV.Liste" Multiplicity="1" Role="ToRole_Einkaufslisten_Listen"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Einkaufslisten_Listen">
+                        <PropertyRef Name="Listid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Einkaufslisten_Listen">
+                        <PropertyRef Name="Listid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZYP23_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Produkte" EntityType="ZYP23_SRV.Produkt" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Userlist" EntityType="ZYP23_SRV.User" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Listen" EntityType="ZYP23_SRV.Liste" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Einkaufslisteneintraege" EntityType="ZYP23_SRV.Listitem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Autheintraege" EntityType="ZYP23_SRV.Autheintrag" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="Einkaufslisten_Listen_AssocSet" Association="ZYP23_SRV.Einkaufslisten_Listen" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Einkaufslisteneintraege" Role="FromRole_Einkaufslisten_Listen"/>
+                    <End EntitySet="Listen" Role="ToRole_Einkaufslisten_Listen"/>
+                </AssociationSet>
+                <AssociationSet Name="Einkaufslisten_Produkte_AssocSet" Association="ZYP23_SRV.Einkaufslisten_Produkte" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Einkaufslisteneintraege" Role="FromRole_Einkaufslisten_Produkte"/>
+                    <End EntitySet="Produkte" Role="ToRole_Einkaufslisten_Produkte"/>
+                </AssociationSet>
+                <AssociationSet Name="Listen_Auth_AssocSet" Association="ZYP23_SRV.Listen_Auth" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Listen" Role="FromRole_Listen_Auth"/>
+                    <End EntitySet="Autheintraege" Role="ToRole_Listen_Auth"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="https://s8hs:443/sap/opu/odata/sap/ZYP23_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s8hs:443/sap/opu/odata/sap/ZYP23_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
